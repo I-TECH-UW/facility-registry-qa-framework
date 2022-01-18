@@ -1,0 +1,31 @@
+name: OpenELIS QA
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest         
+    steps:
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Checkout openelis qaframework
+        uses: actions/checkout@v2
+        with:
+          repository: ${{github.repository}}
+      - name:  Start the Remote web driver in docker  
+        run:  |
+              docker-compose up -d
+      - name: Sleep for 5 minutes 
+        run: sleep 5m
+        shell: bash    
+      - name: Run Facility Rrgistry WorkFlows QA tests
+        run: |
+          echo "cucumber.publish.enabled=true" > src/test/resources/cucumber.properties
+          mvn clean install -DskipTests=true 
+          mvn test   
+        
