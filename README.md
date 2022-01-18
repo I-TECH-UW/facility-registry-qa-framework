@@ -11,7 +11,7 @@
 ## Configuration
 - Set Your test configurations in [src/test/resources/test.properties](./src/test/resources/test.properties)
 
-- See Feature files under [src/features/isanteplus](./src/features/isanteplus)
+- See Feature files under [src/features](./src/features)
 
 ### Running tests
 
