@@ -16,9 +16,9 @@ public class RunTest {
 	
 	public class HOOK {
 		
-		public static final String FR_EMR = "@emr";
+		public static final String EMR = "@emr";
 		
-		public static final String FR_LIS = "@lis";
+		public static final String LAB = "@lab";
 	
 	}
 }

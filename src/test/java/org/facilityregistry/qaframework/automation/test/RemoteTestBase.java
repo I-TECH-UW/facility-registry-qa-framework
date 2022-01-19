@@ -11,10 +11,8 @@ import java.util.Date;
 import org.facilityregistry.qaframework.automation.page.Page;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class RemoteTestBase implements ITestBase {
@@ -29,10 +27,6 @@ public class RemoteTestBase implements ITestBase {
 
 	public static final int MAX_SERVER_STARTUP_IN_MILLISECONDS = 10 * 60 * 1000;
 
-	protected By patientHeaderId = By.cssSelector("div.identifiers span");
-
-	private static volatile boolean serverFailure = false;
-
 	protected static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
 
 	public RemoteTestBase() {
@@ -46,7 +40,7 @@ public class RemoteTestBase implements ITestBase {
 
 	@Before
 	public void setup() throws Exception {
-		setupThread("Chrome");
+		setupThread();
 	}
 
 	@After
@@ -75,10 +69,8 @@ public class RemoteTestBase implements ITestBase {
 		return formatter.format(date);
 	}
 
-	protected void setupThread(String browserName) throws MalformedURLException
+	protected void setupThread() throws MalformedURLException
 	{
-		if(browserName.equalsIgnoreCase("chrome"))
-		{
 			System.out.println("Inside Chrome");
 			ChromeOptions options = new ChromeOptions();
 			String url = System.getenv("REMOTE_URL_CHROME");
@@ -86,17 +78,7 @@ public class RemoteTestBase implements ITestBase {
 				url = REMOTE_URL_CHROME;
 			}
 			driver.set(new RemoteWebDriver(new URL(url), options));
-		}
-		else if (browserName.equalsIgnoreCase("firefox"))
-		{
-			System.out.println("Inside Firefox");
-			FirefoxOptions options = new FirefoxOptions();
-			String url = System.getenv("REMOTE_URL_FIREFOX");
-			if(url == null || url.isEmpty()) {
-				url = REMOTE_URL_FIREFOX;
-			}
-			driver.set(new RemoteWebDriver(new URL(url), options));
-		}
+		
 	}
 
 	protected WebDriver getDriver()
