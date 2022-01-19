@@ -16,26 +16,37 @@ import io.cucumber.java.en.When;
 
 public class EmrFacilityRegistrySteps extends RemoteTestBase {
 	
-	private LoginPage loginPage;
+	private LoginPage emrLoginPage;
 	
-	private HomePage homePage;
+	private HomePage emrHomePage;
 	
-	@After(RunTest.HOOK.FR_EMR)
+	private org.facilityregistry.qaframework.automation.page.facility.LoginPage facilityLoginPage;
+	
+	private org.facilityregistry.qaframework.automation.page.facility.HomePage facilityHomePage;
+	
+	@After(RunTest.HOOK.EMR)
 	public void destroy() {
 		quit();
 	}
 	
-	@Before(RunTest.HOOK.FR_EMR)
+	@Before(RunTest.HOOK.EMR)
 	public void setLoginPage() {
-		System.out.println(" EMR Facility Registry Steps");
-		loginPage = new LoginPage(getDriver());
-		loginPage.go();
+		System.out.println("EMR Facility Registry Steps");
+		emrLoginPage = new LoginPage(getDriver());
+		facilityLoginPage = new org.facilityregistry.qaframework.automation.page.facility.LoginPage(getDriver());
 	}
 	
+	@When("User Logs in into the Facility Registry instance")
+	public void loginToFacility() throws InterruptedException {
+		facilityLoginPage.go();
+		facilityHomePage = facilityLoginPage.goToHomePage();
+		Thread.sleep(10000);
+	}
 	
 	@When("User Logs in into the EMR")
-	public void login() {
-		homePage = loginPage.goToHomePage();
+	public void logintoEmr() {
+		emrLoginPage.go();
+		emrHomePage = emrLoginPage.goToHomePage();
 	}
 	
 }

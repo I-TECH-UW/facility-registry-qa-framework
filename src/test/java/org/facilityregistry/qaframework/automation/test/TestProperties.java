@@ -8,25 +8,44 @@ import java.util.Properties;
 
 public class TestProperties {
 	
-	public static final String WEBDRIVER_PROPERTY = "webdriver";
+    //emr
+	public static final String EMR_PASSWORD_PROPERTY = "emr.password";
 	
-	public static final String DEFAULT_WEBDRIVER = "firefox";
+	public static final String DEFAULT_EMR_PASSWORD = "Admin123";
 	
-	public static final String LOGIN_PASSWORD_PROPERTY = "login.password";
+	public static final String EMR_USERNAME_PROPERTY = "emr.username";
 	
-	public static final String DEFAULT_PASSWORD = "Admin123";
+	public static final String DEFAULT_EMR_USERNAME = "admin";
 	
-	public static final String LOGIN_USERNAME_PROPERTY = "login.username";
+	public static final String EMR_URL_PROPERTY = "emr.url";
 	
-	public static final String DEFAULT_LOGIN_USERNAME = "admin";
+	public static final String DEFAULT_EMR_URL = "http://35.83.181.154:8090/openmrs/";
+
+	//lab
+	public static final String LAB_PASSWORD_PROPERTY = "lab.password";
 	
-	public static final String WEBAPP_URL_PROPERTY = "webapp.url";
+	public static final String DEFAULT_LAB_PASSWORD = "adminADMIN!";
 	
-	public static final String DEFAULT_WEBAPP_URL = "http://35.83.181.154:8090/openmrs/";
+	public static final String LAB_USERNAME_PROPERTY = "lab.username";
 	
-	public static final String HEADLESS_PROPERTY = "headless";
+	public static final String DEFAULT_LAB_USERNAME = "admin";
 	
-	public static final String DEFAULT_HEADLESS = "false";
+	public static final String LAB_URL_PROPERTY = "lab.url";
+	
+	public static final String DEFAULT_LAB_URL = "https://35.83.181.154:8443/";
+
+	//facility
+	public static final String FACILITY_PASSWORD_PROPERTY = "facility.password";
+	
+	public static final String DEFAULT_FACILITY_PASSWORD = "gofr";
+	
+	public static final String FACILITY_USERNAME_PROPERTY = "facility.username";
+	
+	public static final String DEFAULT_FACILITY_USERNAME = "root@gofr.org";
+	
+	public static final String FACILITY_URL_PROPERTY = "facility.url";
+	
+	public static final String DEFAULT_FACILITY_URL = "http://35.83.181.154:4000/";
 	
 	private static TestProperties SINGLETON;
 	
@@ -54,56 +73,49 @@ public class TestProperties {
 		return SINGLETON;
 	}
 	
-	public String getWebAppUrl() {
-		return getProperty(WEBAPP_URL_PROPERTY, DEFAULT_WEBAPP_URL);
+	public String getEmrUrl() {
+		return getProperty(EMR_URL_PROPERTY, DEFAULT_EMR_URL);
 	}
 	
-	public String getUsername() {
-		return getProperty(LOGIN_USERNAME_PROPERTY, DEFAULT_LOGIN_USERNAME);
+	public String getEmrUsername() {
+		return getProperty(EMR_USERNAME_PROPERTY, DEFAULT_EMR_USERNAME);
 	}
 	
-	public String getPassword() {
-		return getProperty(LOGIN_PASSWORD_PROPERTY, DEFAULT_PASSWORD);
+	public String getEmrPassword() {
+		return getProperty(EMR_PASSWORD_PROPERTY, DEFAULT_EMR_PASSWORD);
+	}
+
+	public String getLabUrl() {
+		return getProperty(LAB_URL_PROPERTY, DEFAULT_LAB_URL);
 	}
 	
-	public String getHeadless() {
-		return getProperty(HEADLESS_PROPERTY, DEFAULT_HEADLESS);
+	public String getLabUsername() {
+		return getProperty(LAB_USERNAME_PROPERTY, DEFAULT_LAB_USERNAME);
 	}
 	
-	public String getBrowser() {
-		return getProperty(WEBDRIVER_PROPERTY, DEFAULT_WEBDRIVER);
+	public String getLabPassword() {
+		return getProperty(LAB_PASSWORD_PROPERTY, DEFAULT_LAB_PASSWORD);
+	}
+
+	public String getFacilityUrl() {
+		return getProperty(FACILITY_URL_PROPERTY, DEFAULT_FACILITY_URL);
 	}
 	
-	public WebDriverType getWebDriver() {
-		try {
-			return WebDriverType.valueOf(getBrowser());
-		}
-		catch (IllegalArgumentException e) {
-			return WebDriverType.firefox;
-		}
+	public String getFacilityUsername() {
+		return getProperty(FACILITY_USERNAME_PROPERTY, DEFAULT_FACILITY_USERNAME);
+	}
+	
+	public String getFacilityPassword() {
+		return getProperty(FACILITY_PASSWORD_PROPERTY, DEFAULT_FACILITY_PASSWORD);
 	}
 	
 	public String getProperty(String property, String defaultValue) {
-		String value = System.getProperty(property);
+		String value = properties.getProperty(property);
 
-		if (value == null) {
-			value = System.getenv(property);
-		}
-		if (value == null) {
-			value = properties.getProperty(property);
-		}
 		if (value == null) {
 			value = defaultValue;
 		}
 		return value;
 	}
 	
-	public String getFirefoxDriverLocation() {
-		return getProperty("webdriver.gecko.driver", null);
-	}
-	
-	public enum WebDriverType {
-		chrome,
-		firefox
-	}
 }

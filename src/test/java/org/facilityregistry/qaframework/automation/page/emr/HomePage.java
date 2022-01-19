@@ -43,7 +43,7 @@ public class HomePage extends Page {
 	}
 	
 	public void clickLogout() {
-		goToPage("appui/header/logout.action?successUrl=openmrs");
+		goToEmrPage("appui/header/logout.action?successUrl=openmrs");
 	}
 	
 

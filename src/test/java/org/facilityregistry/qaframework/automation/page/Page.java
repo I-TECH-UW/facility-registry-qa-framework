@@ -38,7 +38,11 @@ public abstract class Page {
 	
 	private final String contextUrl;
 	
-	private final String serverUrl;
+	private final String emrServerUrl;
+	
+	private final String labServerUrl;
+	
+	private final String facilityServerUrl;
 	
 	public WebDriver getDriver() {
 		return this.driver;
@@ -87,22 +91,36 @@ public abstract class Page {
 	}
 	
 	public Page(WebDriver driver) {
-		this.driver = driver;
+		this.driver = driver;	
+		String emrUrl = properties.getEmrUrl();
+		emrServerUrl = formatUrl(emrUrl);
 		
-		String webAppUrl = properties.getWebAppUrl();
-		if (webAppUrl.endsWith("/")) {
-			webAppUrl = webAppUrl.substring(0, webAppUrl.length() - 1);
-		}
-		serverUrl = webAppUrl;
+		String labUrl = properties.getLabUrl();
+		labServerUrl = formatUrl(labUrl);
 		
+		String facilityUrl = properties.getFacilityUrl();
+		facilityServerUrl = formatUrl(facilityUrl);	
 		try {
-			contextUrl = new URL(serverUrl).getPath();
+			contextUrl = new URL(emrServerUrl).getPath();
 		}
 		catch (MalformedURLException e) {
-			throw new IllegalArgumentException("webapp.url " + properties.getWebAppUrl() + " is not a valid URL", e);
-		}
-		
+			throw new IllegalArgumentException("webapp.url " + properties.getEmrUrl() + " is not a valid URL", e);
+		}	
 		waiter = new WebDriverWait(driver, Duration.ofSeconds(RemoteTestBase.MAX_WAIT_IN_SECONDS));
+	}
+	
+	private String formatUrl(String url) {
+		if (url.endsWith("/")) {
+			url = url.substring(0, url.length() - 1);
+		}
+		return url;
+	}
+	
+	private String appendSlash(String pageUrl) {
+		if (!pageUrl.startsWith("/")) {
+			pageUrl = "/" + pageUrl;
+		}
+		return pageUrl;
 	}
 	
 	/**
@@ -128,27 +146,37 @@ public abstract class Page {
 	public Page waitForPage() {
 		waiter.until(pageReady);
 		if (getPageRejectUrl() != null) {
-
+			
 		}
 		return this;
 	}
 	
 	public String newContextPageUrl(String pageUrl) {
-		if (!pageUrl.startsWith("/")) {
-			pageUrl = "/" + pageUrl;
-		}
-		return contextUrl + pageUrl;
+		return contextUrl + appendSlash(pageUrl);
 	}
 	
-	public String newAbsolutePageUrl(String pageUrl) {
-		if (!pageUrl.startsWith("/")) {
-			pageUrl = "/" + pageUrl;
-		}
-		return serverUrl + pageUrl;
+	public String newAbsoluteEmrPageUrl(String pageUrl) {
+		return emrServerUrl + appendSlash(pageUrl);
 	}
 	
-	public void goToPage(String address) {
-		driver.get(newAbsolutePageUrl(address));
+	public String newAbsoluteLabPageUrl(String pageUrl) {
+		return labServerUrl + appendSlash(pageUrl);
+	}
+	
+	public String newAbsoluteFacilityPageUrl(String pageUrl) {
+		return facilityServerUrl + appendSlash(pageUrl);
+	}
+	
+	public void goToEmrPage(String address) {
+		driver.get(newAbsoluteEmrPageUrl(address));
+	}
+	
+	public void goToLabPage(String address) {
+		driver.get(newAbsoluteLabPageUrl(address));
+	}
+	
+	public void goToFacilityPage(String address) {
+		driver.get(newAbsoluteFacilityPageUrl(address));
 	}
 	
 	public void go() {
@@ -285,7 +313,7 @@ public abstract class Page {
 	}
 	
 	public String getAbsolutePageUrl() {
-		return newAbsolutePageUrl(getPageUrl());
+		return newAbsoluteEmrPageUrl(getPageUrl());
 	}
 	
 	public void clickOnLinkFromHref(String href) throws InterruptedException {

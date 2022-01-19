@@ -27,13 +27,13 @@ public class LoginPage extends Page {
 	
 	public LoginPage(WebDriver driver) {
 		super(driver);
-		username = properties.getUsername();
-		password = properties.getPassword();
+		username = properties.getEmrUsername();
+		password = properties.getEmrPassword();
 	}
 	
 	@Override
 	public void go() {
-		goToPage(LOGIN_PATH);
+		goToEmrPage(LOGIN_PATH);
 	}
 	
 	@Override

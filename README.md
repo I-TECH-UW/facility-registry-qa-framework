@@ -15,6 +15,14 @@
 
 ### Running tests
 
+#### Starting the Selenium Chrome remote web driver
+
+1. run   `docker-compose up`
+
+2. Login at http://localhost:7900 , click 'connect' and enter password 'secret' to view the tests executing
+
+#### Running the Tests
+
 1. All Test Features
 
         mvn test
@@ -24,8 +32,10 @@
         mvn test -Dcucumber.filter.tags='<@tag>'   
    
 
-| Test Feature        |Filter Tag      |
-|:------------------: |:-------------: |
-| EMR-FR workflows    | @emr           | 
-| LIS-FR  workflows   | @lis           |
+| Test Feature              |Filter Tag      |
+|:-------------------------:|:-------------: |
+| FACILITY-EMR workflows    | @emr           | 
+| FACILITY-LAB  workflows   | @lab           |
+
+
 
