@@ -16,9 +16,13 @@ import io.cucumber.java.en.When;
 
 public class LabFacilityRegistrySteps extends RemoteTestBase {
 
-    private LoginPage loginPage;
+    private LoginPage labLoginPage;
 	
-	private HomePage homePage;
+	private HomePage labHomePage;
+
+	private org.facilityregistry.qaframework.automation.page.facility.LoginPage facilityLoginPage;
+	
+	private org.facilityregistry.qaframework.automation.page.facility.HomePage facilityHomePage;
 	
 	@After(RunTest.HOOK.LAB)
 	public void destroy() {
@@ -28,14 +32,21 @@ public class LabFacilityRegistrySteps extends RemoteTestBase {
 	@Before(RunTest.HOOK.LAB)
 	public void setLoginPage() {
 		System.out.println("Lab Facility Registry Steps");
-		loginPage = new LoginPage(getDriver());	
+		labLoginPage = new LoginPage(getDriver());	
+		facilityLoginPage = new org.facilityregistry.qaframework.automation.page.facility.LoginPage(getDriver());
+	}
+
+	@When("User Logs in into the Facility Registry")
+	public void loginToFacility() throws InterruptedException {
+		facilityLoginPage.go();
+		facilityHomePage = facilityLoginPage.goToHomePage();
 	}
 	
 	
 	@When("User Logs in into the Lab instance")
 	public void login() {
-		loginPage.go();
-		homePage = loginPage.goToHomePage();
+		labLoginPage.go();
+		labHomePage = labLoginPage.goToHomePage();
 	}
     
 }

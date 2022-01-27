@@ -46,6 +46,10 @@ public class TestProperties {
 	public static final String FACILITY_URL_PROPERTY = "facility.url";
 	
 	public static final String DEFAULT_FACILITY_URL = "http://35.83.181.154:4000/";
+
+	public static final String POLIING_INTERVAL_PROPERTY = "polling.interval";
+
+	public static final String DEFAULT_POLIING_INTERVAL = "5";
 	
 	private static TestProperties SINGLETON;
 	
@@ -107,6 +111,10 @@ public class TestProperties {
 	
 	public String getFacilityPassword() {
 		return getProperty(FACILITY_PASSWORD_PROPERTY, DEFAULT_FACILITY_PASSWORD);
+	}
+
+	public int getPolingInterval() {
+		return Integer.valueOf(getProperty(POLIING_INTERVAL_PROPERTY, DEFAULT_POLIING_INTERVAL));
 	}
 	
 	public String getProperty(String property, String defaultValue) {

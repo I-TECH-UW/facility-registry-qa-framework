@@ -91,7 +91,7 @@ public abstract class Page {
 	}
 	
 	public Page(WebDriver driver) {
-		this.driver = driver;	
+		this.driver = driver;
 		String emrUrl = properties.getEmrUrl();
 		emrServerUrl = formatUrl(emrUrl);
 		
@@ -99,13 +99,13 @@ public abstract class Page {
 		labServerUrl = formatUrl(labUrl);
 		
 		String facilityUrl = properties.getFacilityUrl();
-		facilityServerUrl = formatUrl(facilityUrl);	
+		facilityServerUrl = formatUrl(facilityUrl);
 		try {
 			contextUrl = new URL(emrServerUrl).getPath();
 		}
 		catch (MalformedURLException e) {
 			throw new IllegalArgumentException("webapp.url " + properties.getEmrUrl() + " is not a valid URL", e);
-		}	
+		}
 		waiter = new WebDriverWait(driver, Duration.ofSeconds(RemoteTestBase.MAX_WAIT_IN_SECONDS));
 	}
 	
@@ -219,6 +219,10 @@ public abstract class Page {
 	
 	public WebElement findElementById(String id) {
 		return findElement(By.id(id));
+	}
+	
+	public WebElement findElementByName(String name) {
+		return findElement(By.name(name));
 	}
 	
 	public String getText(By by) {
@@ -519,6 +523,32 @@ public abstract class Page {
 			}
 		}
 		return disabled;
+	}
+	
+	/**
+	 * Forcefuly selects a React option by Javascript. use name attribute
+	 * 
+	 * @throws InterruptedException
+	 */
+	public void selectOptionByJavacript(By by) throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = findElement(by);
+		js.executeScript("arguments[0].click();", element);
+		Thread.sleep(2000);
+		element.sendKeys(Keys.chord(Keys.DOWN, Keys.ENTER, Keys.ENTER));
+	}
+	
+	public void selectOptionByAction(By by, By value) throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = findElement(by);
+		Actions action = new Actions(driver);
+		action.moveToElement(element).click().build().perform();
+		action.click(findElement(value)).build().perform();
+	}
+	
+	public void clickByJavacript(By by) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", findElement(by));
 	}
 	
 	public void refreshPage() {
