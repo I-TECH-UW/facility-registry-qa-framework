@@ -20,8 +20,8 @@ jobs:
       - name:  Start the Remote web driver in docker  
         run:  |
               docker-compose up -d
-      - name: Sleep for 5 minutes 
-        run: sleep 5m
+      - name: Sleep for 3 minutes 
+        run: sleep 3m
         shell: bash    
       - name: Run Facility Rrgistry WorkFlows QA tests
         run: |
