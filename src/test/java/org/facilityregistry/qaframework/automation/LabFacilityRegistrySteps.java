@@ -15,10 +15,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LabFacilityRegistrySteps extends RemoteTestBase {
-
-    private LoginPage loginPage;
 	
-	private HomePage homePage;
+	private LoginPage loginPage;
+	
+	private HomePage labHomePage;
 	
 	@After(RunTest.HOOK.LAB)
 	public void destroy() {
@@ -28,14 +28,13 @@ public class LabFacilityRegistrySteps extends RemoteTestBase {
 	@Before(RunTest.HOOK.LAB)
 	public void setLoginPage() {
 		System.out.println("Lab Facility Registry Steps");
-		loginPage = new LoginPage(getDriver());	
+		loginPage = new LoginPage(getDriver());
 	}
-	
 	
 	@When("User Logs in into the Lab instance")
 	public void login() {
 		loginPage.go();
-		homePage = loginPage.goToHomePage();
+		labHomePage = loginPage.goToHomePage();
 	}
-    
+	
 }

@@ -20,10 +20,6 @@ public class EmrFacilityRegistrySteps extends RemoteTestBase {
 	
 	private HomePage emrHomePage;
 	
-	private org.facilityregistry.qaframework.automation.page.facility.LoginPage facilityLoginPage;
-	
-	private org.facilityregistry.qaframework.automation.page.facility.HomePage facilityHomePage;
-	
 	@After(RunTest.HOOK.EMR)
 	public void destroy() {
 		quit();
@@ -33,14 +29,6 @@ public class EmrFacilityRegistrySteps extends RemoteTestBase {
 	public void setLoginPage() {
 		System.out.println("EMR Facility Registry Steps");
 		emrLoginPage = new LoginPage(getDriver());
-		facilityLoginPage = new org.facilityregistry.qaframework.automation.page.facility.LoginPage(getDriver());
-	}
-	
-	@When("User Logs in into the Facility Registry instance")
-	public void loginToFacility() throws InterruptedException {
-		facilityLoginPage.go();
-		facilityHomePage = facilityLoginPage.goToHomePage();
-		Thread.sleep(10000);
 	}
 	
 	@When("User Logs in into the EMR")
