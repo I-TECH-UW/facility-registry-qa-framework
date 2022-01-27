@@ -10,7 +10,7 @@ Scenario Outline: User Should add Facilities to the Facility Registry
   Then User Enters Facility Details
 
 
-# @emr  
-# Scenario Outline: EMR should poll facilities from the Facility Registry
-#   When User Logs in into the EMR
+@emr  
+Scenario Outline: EMR should poll facilities from the Facility Registry
+  When User Logs in into the EMR
  
