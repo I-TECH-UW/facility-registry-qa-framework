@@ -29,11 +29,11 @@ public class LoginPage extends Page {
 		username = properties.getLabUsername();
 		password = properties.getLabPassword();
 	}
-	 
+	
 	public String getUsername() {
 		return username;
 	}
-
+	
 	@Override
 	public void go() {
 		goToLabPage(PATH_LOGIN);
@@ -46,11 +46,11 @@ public class LoginPage extends Page {
 	}
 	
 	public void enterUsername(String username) {
-		setTextToFieldNoEnter(FIELD_USERNAME,username);
+		setTextToFieldNoEnter(FIELD_USERNAME, username);
 	}
 	
 	public void enterPassword(String password) {
-		setTextToFieldNoEnter(FIELD_PASSWORD,password);
+		setTextToFieldNoEnter(FIELD_PASSWORD, password);
 	}
 	
 	public WebElement getLoginButton() {
@@ -64,13 +64,13 @@ public class LoginPage extends Page {
 		clickOn(BUTTON_SUBMIT);
 		return new HomePage(this);
 	}
-
+	
 	private void acceptSelfAssignedCert() {
-        By BUTTON_ADVANCED = By.id("details-button");
-        By LINK_PROEED = By.id("proceed-link");
-        if (this.hasElementWithoutWait(BUTTON_ADVANCED)) {     
-            clickOn(BUTTON_ADVANCED);
-            clickOn(LINK_PROEED);
-        }
-    }
+		By BUTTON_ADVANCED = By.id("details-button");
+		By LINK_PROEED = By.id("proceed-link");
+		if (this.hasElementWithoutWait(BUTTON_ADVANCED)) {
+			clickOn(BUTTON_ADVANCED);
+			clickOn(LINK_PROEED);
+		}
+	}
 }

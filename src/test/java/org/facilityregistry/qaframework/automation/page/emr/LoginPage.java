@@ -1,5 +1,7 @@
 package org.facilityregistry.qaframework.automation.page.emr;
 
+import java.util.concurrent.TimeUnit;
+
 import org.facilityregistry.qaframework.automation.page.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

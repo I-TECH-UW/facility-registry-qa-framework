@@ -8,22 +8,12 @@ import org.openqa.selenium.By;
  */
 public class HomePage extends Page {
 	
-
-	
 	private final By LINK_LOGOUT = By.className("logout");
-	
-	private final String PATH_HOME_RESET = "referenceapplication/home.page?noredirect=true";
-	
-	private final By FIELD_OLD_PASSWORD = By.xpath("//input[@id='oldPassword-field']");
-	
-	private final By FIELD_NEW_PASSWORD = By.xpath("//input[@id='newPassword-field']");
-	
-	private final By FIELD_CONFIRM_PASSWORD = By.xpath("//input[@id='confirmPassword-field']");
-	
-	private static final By SAVE_BUTTON = By.id("save-button");
 	
 	private final String PATH_HOME = "/referenceapplication/home.page";
 	
+	private static final By CONFIGURE_METADATA_APP = By.id(
+	    "org-openmrs-module-adminui-configuremetadata-homepageLink-org-openmrs-module-adminui-configuremetadata-homepageLink-extension");
 	
 	public HomePage(Page page) {
 		super(page);
@@ -34,10 +24,6 @@ public class HomePage extends Page {
 		return PATH_HOME;
 	}
 	
-	public String getPageUrlReset() {
-		return PATH_HOME_RESET;
-	}
-	
 	public Boolean hasLogOutLink() {
 		return hasElement(LINK_LOGOUT);
 	}
@@ -46,24 +32,9 @@ public class HomePage extends Page {
 		goToEmrPage("appui/header/logout.action?successUrl=openmrs");
 	}
 	
-
-	
-	public void enterOldPassword(String oldPassword) {
-		setText(FIELD_OLD_PASSWORD, oldPassword);
-	}
-	
-	public void enterNewPassword(String newPassword) {
-		setText(FIELD_NEW_PASSWORD, newPassword);
-	}
-	
-	public void confirmNewPassword(String confirmPassword) {
-		setText(FIELD_CONFIRM_PASSWORD, confirmPassword);
-	}
-	
-	
-	public String savePassword() {
-		clickOn(SAVE_BUTTON);
-		return "index.html";
+	public ConfigureMetadataPage goToConfigureMetadata() {
+		clickOn(CONFIGURE_METADATA_APP);
+		return new ConfigureMetadataPage(this);
 	}
 	
 }

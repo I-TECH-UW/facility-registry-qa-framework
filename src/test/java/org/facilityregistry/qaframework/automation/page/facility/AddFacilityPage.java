@@ -24,7 +24,7 @@ public class AddFacilityPage extends Page {
     private static final By BUTTON_SAVE = By
             .xpath("//*[@id='app']/div[1]/main/div/div[6]/form/nav/div[1]/div/div/button[2]");
     
-    private static final By SELECT_ORGANIZATION_VALUE = By.xpath("//*[@id='app']/div[5]/div/div/div[2]/div/div[2]/div");
+    private static final By SELECT_ORGANIZATION_VALUE = By.xpath("//div[contains(text(),'OpenMRS')]");
     
     public AddFacilityPage(Page parent) {
         super(parent);
@@ -36,18 +36,18 @@ public class AddFacilityPage extends Page {
     }
     
     public void enterFacilityName(String name) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         setTextToFieldNoEnter(FIELD_NAME, name);
     }
     
     public void enterFacilityDescription(String description) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         setTextToFieldNoEnter(FIELD_DESCRIPTION, description);
     }
     
     public void selectFacilityStatus() throws InterruptedException {
         selectOptionByJavacript(SELECT_STATUS);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
     
     public void selectFacilityType() throws InterruptedException {
@@ -60,15 +60,16 @@ public class AddFacilityPage extends Page {
     }
     
     public void selectManagingOrg() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         selectOptionByAction(SELECT_ORGANIZATION, SELECT_ORGANIZATION_VALUE);
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         selectOptionByJavacript(SELECT_ORGANIZATION_TYPE);
     }
     
     public void clickSave() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         clickByJavacript(BUTTON_SAVE);
+        Thread.sleep(3000);
     }
     
 }
