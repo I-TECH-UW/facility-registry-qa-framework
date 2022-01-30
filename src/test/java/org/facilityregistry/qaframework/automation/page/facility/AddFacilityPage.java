@@ -24,8 +24,8 @@ public class AddFacilityPage extends Page {
     private static final By BUTTON_SAVE = By
             .xpath("//*[@id='app']/div[1]/main/div/div[6]/form/nav/div[1]/div/div/button[2]");
     
-    private static final By SELECT_ORGANIZATION_VALUE = By.xpath("//*[@id='app']/div[5]/div/div/div[2]/div/div[2]/div");
-    
+    private static final By SELECT_ORGANIZATION_VALUE = By.xpath("//div[contains(text(),'OpenMRS')]");
+   
     public AddFacilityPage(Page parent) {
         super(parent);
     }
@@ -69,6 +69,7 @@ public class AddFacilityPage extends Page {
     public void clickSave() throws InterruptedException {
         Thread.sleep(2000);
         clickByJavacript(BUTTON_SAVE);
+        Thread.sleep(2000);
     }
     
 }

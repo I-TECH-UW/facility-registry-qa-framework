@@ -1,8 +1,8 @@
 package org.facilityregistry.qaframework.automation;
 
 import static org.junit.Assert.assertTrue;
-
 import org.facilityregistry.qaframework.RunTest;
+import org.facilityregistry.qaframework.automation.page.lab.AdminPage;
 import org.facilityregistry.qaframework.automation.page.lab.HomePage;
 import org.facilityregistry.qaframework.automation.page.lab.LoginPage;
 import org.facilityregistry.qaframework.automation.test.RemoteTestBase;
@@ -14,16 +14,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class LabFacilityRegistrySteps extends RemoteTestBase {
+public class LabSteps extends RemoteTestBase {
 
     private LoginPage labLoginPage;
 	
 	private HomePage labHomePage;
 
-	private org.facilityregistry.qaframework.automation.page.facility.LoginPage facilityLoginPage;
-	
-	private org.facilityregistry.qaframework.automation.page.facility.HomePage facilityHomePage;
-	
+	private AdminPage adminPage;
+
 	@After(RunTest.HOOK.LAB)
 	public void destroy() {
 		quit();
@@ -33,20 +31,25 @@ public class LabFacilityRegistrySteps extends RemoteTestBase {
 	public void setLoginPage() {
 		System.out.println("Lab Facility Registry Steps");
 		labLoginPage = new LoginPage(getDriver());	
-		facilityLoginPage = new org.facilityregistry.qaframework.automation.page.facility.LoginPage(getDriver());
 	}
 
-	@When("User Logs in into the Facility Registry")
-	public void loginToFacility() throws InterruptedException {
-		facilityLoginPage.go();
-		facilityHomePage = facilityLoginPage.goToHomePage();
-	}
-	
-	
 	@When("User Logs in into the Lab instance")
 	public void login() {
 		labLoginPage.go();
 		labHomePage = labLoginPage.goToHomePage();
 	}
-    
+
+	@And("User goes to the Admininistration Page")
+	public void goToManageLOcations() {
+		adminPage = labHomePage.goToAdminPage();
+		adminPage.clickOnOrganizationMenu();
+	}
+
+	@Then("Facility {string} should exist in Lab instance")
+	public void facilityExists(String location){
+		adminPage.enterSearchString(location);
+		adminPage.clickSearch();
+		assertTrue(adminPage.locationExists(location));
+	} 
+
 }

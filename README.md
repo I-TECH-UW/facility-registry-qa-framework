@@ -34,8 +34,9 @@
 
 | Test Feature              |Filter Tag      |
 |:-------------------------:|:-------------: |
-| FACILITY-EMR workflows    | @emr           | 
-| FACILITY-LAB  workflows   | @lab           |
+| FACILITY  workflows       | @facility          |
+| EMR workflows             | @emr           | 
+| LAB  workflows            | @lab           |
 
 
 

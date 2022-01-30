@@ -19,6 +19,8 @@ public class RunTest {
 		public static final String EMR = "@emr";
 		
 		public static final String LAB = "@lab";
+
+                public static final String FACILITY = "@facility";
 	
 	}
 }
