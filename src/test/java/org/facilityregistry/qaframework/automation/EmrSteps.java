@@ -23,7 +23,7 @@ public class EmrSteps extends RemoteTestBase {
 	private HomePage emrHomePage;
 	
 	private ConfigureMetadataPage configureMetadataPage;
-
+	
 	private ManageLocationsPage manageLocationsPage;
 	
 	@After(RunTest.HOOK.EMR)
@@ -37,22 +37,21 @@ public class EmrSteps extends RemoteTestBase {
 		emrLoginPage = new LoginPage(getDriver());
 	}
 	
-	
 	@When("User Logs in into the EMR")
 	public void logintoEmr() throws InterruptedException {
 		emrLoginPage.go();
 		emrHomePage = emrLoginPage.goToHomePage();
 	}
-
+	
 	@And("User goes to the Manage Locations Page")
 	public void goToManageLOcations() {
 		configureMetadataPage = emrHomePage.goToConfigureMetadata();
 		manageLocationsPage = configureMetadataPage.goToManageLocations();
 	}
-
+	
 	@Then("Facility {string} should exist in EMR instance")
-	public void facilityExists(String location){
+	public void facilityExists(String location) {
 		assertTrue(manageLocationsPage.locationExists(location));
-	} 
+	}
 	
 }

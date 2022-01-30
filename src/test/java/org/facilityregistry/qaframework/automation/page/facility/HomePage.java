@@ -11,7 +11,7 @@ public class HomePage extends Page {
 	private static final By MENU_FACILITY = By.xpath("//*[@id='menu']/li[3]/a");
 	
 	private static final By SUB_MENU_FACILITY_ADD_ORG = By.xpath("//*[@id='menu']/li[3]/ul/div[3]/a/div");
-
+	
 	private static final By SUB_MENU_FACILITY_ADD_FACILITY = By.xpath("//*[@id='menu']/li[3]/ul/div[2]/a/div");
 	
 	public HomePage(Page page) {
@@ -28,17 +28,17 @@ public class HomePage extends Page {
 	}
 	
 	public AddOrganizationPage clickAddOrg() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		hoverOn(MENU_FACILITY);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		clickOn(SUB_MENU_FACILITY_ADD_ORG);
 		return new AddOrganizationPage(this);
 	}
-
+	
 	public AddFacilityPage clickAddFacility() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		hoverOn(MENU_FACILITY);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		clickOn(SUB_MENU_FACILITY_ADD_FACILITY);
 		return new AddFacilityPage(this);
 	}

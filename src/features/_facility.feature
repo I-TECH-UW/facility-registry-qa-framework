@@ -1,4 +1,4 @@
-Feature: FACILITY-EMR  WorkFlows
+Feature: FACILITY WorkFlows
 
 @facility 
 Scenario Outline: User Should add Facilities to the Facility Registry

@@ -11,9 +11,9 @@ public class HomePage extends Page {
 	private final By LINK_LOGOUT = By.className("logout");
 	
 	private final String PATH_HOME = "/referenceapplication/home.page";
-
-	private static final By CONFIGURE_METADATA_APP = By.id("org-openmrs-module-adminui-configuremetadata-homepageLink-org-openmrs-module-adminui-configuremetadata-homepageLink-extension");
 	
+	private static final By CONFIGURE_METADATA_APP = By.id(
+	    "org-openmrs-module-adminui-configuremetadata-homepageLink-org-openmrs-module-adminui-configuremetadata-homepageLink-extension");
 	
 	public HomePage(Page page) {
 		super(page);

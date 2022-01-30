@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class TestProperties {
 	
-    //emr
+	//emr
 	public static final String EMR_PASSWORD_PROPERTY = "emr.password";
 	
 	public static final String DEFAULT_EMR_PASSWORD = "Admin123";
@@ -20,7 +20,7 @@ public class TestProperties {
 	public static final String EMR_URL_PROPERTY = "emr.url";
 	
 	public static final String DEFAULT_EMR_URL = "http://35.83.181.154:8090/openmrs/";
-
+	
 	//lab
 	public static final String LAB_PASSWORD_PROPERTY = "lab.password";
 	
@@ -33,7 +33,7 @@ public class TestProperties {
 	public static final String LAB_URL_PROPERTY = "lab.url";
 	
 	public static final String DEFAULT_LAB_URL = "https://35.83.181.154:8443/";
-
+	
 	//facility
 	public static final String FACILITY_PASSWORD_PROPERTY = "facility.password";
 	
@@ -46,9 +46,9 @@ public class TestProperties {
 	public static final String FACILITY_URL_PROPERTY = "facility.url";
 	
 	public static final String DEFAULT_FACILITY_URL = "http://35.83.181.154:4000/";
-
+	
 	public static final String POLIING_INTERVAL_PROPERTY = "polling.interval";
-
+	
 	public static final String DEFAULT_POLIING_INTERVAL = "5";
 	
 	private static TestProperties SINGLETON;
@@ -88,7 +88,7 @@ public class TestProperties {
 	public String getEmrPassword() {
 		return getProperty(EMR_PASSWORD_PROPERTY, DEFAULT_EMR_PASSWORD);
 	}
-
+	
 	public String getLabUrl() {
 		return getProperty(LAB_URL_PROPERTY, DEFAULT_LAB_URL);
 	}
@@ -100,7 +100,7 @@ public class TestProperties {
 	public String getLabPassword() {
 		return getProperty(LAB_PASSWORD_PROPERTY, DEFAULT_LAB_PASSWORD);
 	}
-
+	
 	public String getFacilityUrl() {
 		return getProperty(FACILITY_URL_PROPERTY, DEFAULT_FACILITY_URL);
 	}
@@ -112,14 +112,14 @@ public class TestProperties {
 	public String getFacilityPassword() {
 		return getProperty(FACILITY_PASSWORD_PROPERTY, DEFAULT_FACILITY_PASSWORD);
 	}
-
+	
 	public int getPolingInterval() {
 		return Integer.valueOf(getProperty(POLIING_INTERVAL_PROPERTY, DEFAULT_POLIING_INTERVAL));
 	}
 	
 	public String getProperty(String property, String defaultValue) {
 		String value = properties.getProperty(property);
-
+		
 		if (value == null) {
 			value = defaultValue;
 		}

@@ -17,21 +17,21 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class FacilityRegistrySteps extends RemoteTestBase {
-
-    private LoginPage facilityLoginPage;
+	
+	private LoginPage facilityLoginPage;
 	
 	private HomePage facilityHomePage;
-
-    private AddOrganizationPage addOrgPage;
+	
+	private AddOrganizationPage addOrgPage;
 	
 	private AddFacilityPage addFacilityPage;
-
+	
 	@Before(RunTest.HOOK.FACILITY)
 	public void setLoginPage() {
 		System.out.println("Facility Registry Steps");
 		facilityLoginPage = new LoginPage(getDriver());
 	}
-
+	
 	@After(RunTest.HOOK.FACILITY)
 	public void destroy() {
 		quit();
@@ -71,5 +71,5 @@ public class FacilityRegistrySteps extends RemoteTestBase {
 		addFacilityPage.selectManagingOrg();
 		addFacilityPage.clickSave();
 	}
-    
+	
 }

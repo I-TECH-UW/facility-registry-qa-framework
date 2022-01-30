@@ -35,7 +35,7 @@ public class AddOrganizationPage extends Page {
         Thread.sleep(1000);
     }
     
-    public void clickSave()  {
+    public void clickSave() {
         clickByJavacript(BUTTON_SAVE);
     }
     

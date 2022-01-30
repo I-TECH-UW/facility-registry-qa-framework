@@ -16,19 +16,19 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class RemoteTestBase implements ITestBase {
-
+	
 	public static final int MAX_WAIT_IN_SECONDS = 120;
-
+	
 	public static final int MAX_PAGE_LOAD_IN_SECONDS = 120;
-
+	
 	public static final String REMOTE_URL_CHROME = "http://localhost:4444/wd/hub";
-
+	
 	public static String REMOTE_URL_FIREFOX = "http://localhost:4445/wd/hub";
-
+	
 	public static final int MAX_SERVER_STARTUP_IN_MILLISECONDS = 10 * 60 * 1000;
-
+	
 	protected static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
-
+	
 	public RemoteTestBase() {
 		try {
 			setup();
@@ -37,17 +37,17 @@ public class RemoteTestBase implements ITestBase {
 			fail(e.getMessage());
 		}
 	}
-
+	
 	@Before
 	public void setup() throws Exception {
 		setupThread();
 	}
-
+	
 	@After
 	public void teardown() {
 		quit();
 	}
-
+	
 	/**
 	 * Assert we're on the expected page.
 	 * 
@@ -68,21 +68,19 @@ public class RemoteTestBase implements ITestBase {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(date);
 	}
-
-	protected void setupThread() throws MalformedURLException
-	{
-			System.out.println("Inside Chrome");
-			ChromeOptions options = new ChromeOptions();
-			String url = System.getenv("REMOTE_URL_CHROME");
-			if(url == null || url.isEmpty()) {
-				url = REMOTE_URL_CHROME;
-			}
-			driver.set(new RemoteWebDriver(new URL(url), options));
+	
+	protected void setupThread() throws MalformedURLException {
+		System.out.println("Inside Chrome");
+		ChromeOptions options = new ChromeOptions();
+		String url = System.getenv("REMOTE_URL_CHROME");
+		if (url == null || url.isEmpty()) {
+			url = REMOTE_URL_CHROME;
+		}
+		driver.set(new RemoteWebDriver(new URL(url), options));
 		
 	}
-
-	protected WebDriver getDriver()
-	{
+	
+	protected WebDriver getDriver() {
 		return driver.get();
 	}
 }
